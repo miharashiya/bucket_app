@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+
+
     Route::get('/list-items', [ListItemController::class, 'index'])->name('list-items.index'); // 一覧表示
     Route::get('/list-items/create', [ListItemController::class, 'create'])->name('list-items.create'); // 登録画面表示
     Route::post('/list-items', [ListItemController::class, 'store'])->name('list-items.store'); // 登録処理

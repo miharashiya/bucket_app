@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Complete Box</title>
 </head>
+
 <body>
     <h1>Complete Box</h1>
     <ul>
@@ -18,4 +20,5 @@
     </ul>
     <a href="/list-items">戻る</a>
 </body>
+
 </html>

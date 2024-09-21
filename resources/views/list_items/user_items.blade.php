@@ -1,18 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ユーザーのTodoリスト</title>
-</head>
-<body>
-    <h1>ユーザーのTodoリスト</h1>
-    <ul>
-        @foreach ($items as $item)
-            <li>{{ $item->text }}</li>
-        @endforeach
-    </ul>
-    <a href="/">戻る</a>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Profile') }}
+        </h2>
+    </x-slot>
 
-    <a href="{{ route('users.list-items', $user->id) }}">このユーザーのTodoリストを見る</a>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-profile-information-form')
+                </div>
+            </div>
 
-</body>
-</html>
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-password-form')
+                </div>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.delete-user-form')
+                </div>
+            </div>
+
+            <!-- ユーザーのTodoリスト -->
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <h1 class="font-semibold text-xl">ユーザーのTodoリスト</h1>
+                <ul class="mt-2">
+                    @foreach ($items as $item)
+                        <li>{{ $item->text }}</li>
+                    @endforeach
+                </ul>
+                <a href="/">戻る</a>
+
+                @if(isset($user))
+                    <a href="{{ route('users.list-items', $user->id) }}">このユーザーのTodoリストを見る</a>
+                @endif
+            </div>
+        </div>
+    </div>
+</x-app-layout>

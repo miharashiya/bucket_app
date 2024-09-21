@@ -1,3 +1,6 @@
+
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -41,4 +44,6 @@
             <a href="/trash">Complete Box</a>
         @endif
     </div>
+
+    
 @endsection
