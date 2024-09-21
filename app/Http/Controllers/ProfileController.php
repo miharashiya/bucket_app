@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User; // これを追加
+
 
 class ProfileController extends Controller
 {
@@ -19,6 +21,10 @@ class ProfileController extends Controller
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
+        
+        //実装中
+        //$users = User::where('id', '!=', auth()->id())->get(); // 現在のユーザー以外のユーザーを取得
+        //return view('profile.edit', compact('users'));
     }
 
     /**
@@ -57,4 +63,6 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    
 }

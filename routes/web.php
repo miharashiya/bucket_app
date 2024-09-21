@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/list-items/{id}', [ListItemController::class, 'update'])->name('list-items.update'); // 編集処理
     Route::delete('/list-items/{id}', [ListItemController::class, 'destroy'])->name('list-items.destroy'); // 削除
 
-
+    //自分以外のリストを見る
+    Route::get('/users/{user}/list-items', [ListItemController::class, 'showUserItems'])->name('users.list-items');
+    
 
     // ゴミ箱表示
     Route::get('/trash', [ListItemController::class, 'trash'])->name('trash.index');

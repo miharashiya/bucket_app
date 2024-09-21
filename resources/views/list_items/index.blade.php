@@ -38,7 +38,7 @@
             </table>
 
 
-            <a href="/trash">ゴミ箱へ</a>
+            <a href="/trash">Complete Box</a>
         @endif
     </div>
 @endsection

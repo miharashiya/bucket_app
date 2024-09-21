@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ゴミ箱</title>
+    <title>Complete Box</title>
 </head>
 <body>
-    <h1>ゴミ箱</h1>
+    <h1>Complete Box</h1>
     <ul>
         @foreach ($trashedItems as $item)
             <li>
@@ -16,6 +16,6 @@
             </li>
         @endforeach
     </ul>
-    <a href="/">戻る</a>
+    <a href="/list-items">戻る</a>
 </body>
 </html>

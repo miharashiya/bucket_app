@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ListItem;
 use Illuminate\Http\Request;
 
+
 class ListItemController extends Controller
 {
     // 一覧表示
@@ -54,6 +55,14 @@ class ListItemController extends Controller
         $item->update($request->only(['text', 'user_id']));
         return response()->json($item);
     }
+
+    // 他のユーザーのTodoリスト表示
+    public function showUserItems($userId)
+    {
+        $items = ListItem::where('user_id', $userId)->get(); // 指定されたユーザーのアイテムを取得
+        return view('list_items.user_items', compact('items'));
+    }
+
 
     // 削除
     public function destroy($id)

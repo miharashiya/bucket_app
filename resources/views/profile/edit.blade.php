@@ -24,6 +24,30 @@
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
+
+
+
+            <!-- 他のユーザーのTodoリストへのリンク -->
+            @php
+                $users = $users ?? collect(); // 未定義の場合は空のコレクションを代入
+            @endphp
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <h2 class="font-semibold text-lg">他のユーザーのTodoリストを見る</h2>
+                @if (isset($users) && $users->isEmpty())
+                    <p>他のユーザーがいません。</p>
+                @else
+                    <ul class="mt-2">
+                        @foreach ($users as $user)
+                            <li>
+                                <a href="{{ route('users.list-items', $user->id) }}"
+                                    class="text-blue-600 hover:underline">
+                                    {{ $user->name }}のTodoリスト
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
         </div>
     </div>
 </x-app-layout>
