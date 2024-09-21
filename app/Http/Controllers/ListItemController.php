@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ListItem;
+use App\Models\User; // ここを追加
+use App\Models\ListItem; // ListItemモデルもインポートする
 use Illuminate\Http\Request;
 
 
@@ -13,14 +14,15 @@ class ListItemController extends Controller
     {
         $userId = auth()->id(); // 現在のユーザーのIDを取得
         $items = ListItem::where('user_id', $userId)->get(); // ユーザーIDでフィルタリング
-        return view('list_items.index', compact('items'));
+        //dd($items);
+        return view('list-items.index', compact('items'));
     }
 
     // 登録画面表示
     public function create()
     {
         // 登録画面用のビューを返す
-        return view('list_items.create');
+        return view('list-items.create');
     }
 
     // 登録処理
@@ -40,7 +42,7 @@ class ListItemController extends Controller
     {
         $item = ListItem::findOrFail($id);
         // 編集画面用のビューを返す
-        return view('list_items.edit', compact('item'));
+        return view('list-items.edit', compact('item'));
     }
 
     // 編集処理
@@ -57,12 +59,14 @@ class ListItemController extends Controller
     }
 
     // 他のユーザーのTodoリスト表示
-    public function showUserItems($userId)
+    public function showUserListItems(User $user)
     {
-        $items = ListItem::where('user_id', $userId)->get(); // 指定されたユーザーのアイテムを取得
-        return view('list_items.user_items', compact('items'));
+        // 他のユーザーのリストアイテムを取得
+        $items = $user->listItems; // Userモデルで定義したリレーションを使用
+        
+        //dd($user);
+        return view('list-items.user', compact('user', 'items'));
     }
-
 
     // 削除
     public function destroy($id)
@@ -76,7 +80,7 @@ class ListItemController extends Controller
     public function trash()
     {
         $trashedItems = ListItem::onlyTrashed()->where('user_id', auth()->id())->get(); // 現在のユーザーのトラッシュアイテムを取得
-        return view('list_items.trash', compact('trashedItems'));
+        return view('list-items.trash', compact('trashedItems'));
     }
 
     // アイテムの復元

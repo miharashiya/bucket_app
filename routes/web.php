@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListItemController;
-use App\Models\ListItem;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,8 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/list-items/{id}', [ListItemController::class, 'destroy'])->name('list-items.destroy'); // 削除
 
     //自分以外のリストを見る
-    Route::get('/users/{user}/list-items', [ListItemController::class, 'showUserItems'])->name('users.list-items');
-    
+    //Route::get('/users/{user}/list-items', [UserController::class, 'showListItems'])->name('users.list-items');
+    Route::get('/users/{user}/list-items', [ListItemController::class, 'showUserListItems'])->name('users.list-items');
 
     // ゴミ箱表示
     Route::get('/trash', [ListItemController::class, 'trash'])->name('trash.index');
