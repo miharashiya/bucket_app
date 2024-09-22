@@ -15,8 +15,10 @@
         </ul>
     @endif
 
-    
+
 
     <a href="{{ route('list-items.index') }}">戻る</a>
 </div>
 @endsection
+
+

@@ -24,7 +24,7 @@
                     @foreach ($items as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->text }}</td>
+                            <td><a href="/list-items/{{ $item->id }}">{{ $item->text }}</a></td>
                             <td>
                                 <a href="{{ route('list-items.edit', $item->id) }}" class="btn btn-warning btn-sm">編集</a>
                                 <form action="{{ route('list-items.destroy', $item->id) }}" method="POST"

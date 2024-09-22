@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListItemController;
+use App\Http\Controllers\CommentController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,13 @@ Route::middleware('auth')->group(function () {
     //自分以外のリストを見る
     //Route::get('/users/{user}/list-items', [UserController::class, 'showListItems'])->name('users.list-items');
     Route::get('/users/{user}/list-items', [ListItemController::class, 'showUserListItems'])->name('users.list-items');
+
+    Route::get('/list-items/{id}', [ListItemController::class,'show'])->name('list-items.show');
+
+
+    //コメント機能
+    Route::post('/list-items/{listItem}/comments', [CommentController::class, 'store'])->name('comments.store');
+    
 
     // ゴミ箱表示
     Route::get('/trash', [ListItemController::class, 'trash'])->name('trash.index');

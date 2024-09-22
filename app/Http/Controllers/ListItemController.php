@@ -12,8 +12,11 @@ class ListItemController extends Controller
     // 一覧表示
     public function index()
     {
-        $userId = auth()->id(); // 現在のユーザーのIDを取得
-        $items = ListItem::where('user_id', $userId)->get(); // ユーザーIDでフィルタリング
+    $items = ListItem::all();
+
+
+        //$userId = auth()->id(); // 現在のユーザーのIDを取得
+//$items = ListItem::where('user_id', $userId)->get(); // ユーザーIDでフィルタリング
         //dd($items);
         return view('list-items.index', compact('items'));
     }
@@ -66,6 +69,11 @@ class ListItemController extends Controller
         
         //dd($user);
         return view('list-items.user', compact('user', 'items'));
+    }
+
+    public function show($id){
+        $listitem = ListItem::find($id);
+        return view('list-items.show', compact('listitem'));
     }
 
     // 削除
